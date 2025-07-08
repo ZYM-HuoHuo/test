@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"dev_dm.h": "c",
+			"motor_ctrl.h": "c"
+		}
+	}
+}

@@ -1,0 +1,6 @@
+# Customer Configuration
+/motor_conf.h
+
+# Log File
+*.txt
+log/
