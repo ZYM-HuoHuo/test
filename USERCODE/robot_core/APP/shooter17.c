@@ -250,7 +250,7 @@ HAL_StatusTypeDef shooter17_ctrl_loop(rc_ctrl_t *rc_recv, robot_t *robot) {
     LOAD_MOTOR_TFF(motors->R_fric, fric_output[RIGHT]);
     LOAD_MOTOR_TFF(motors->dial, dial_output);
 
-        motors->L_fric.AUX.EN = 1;/////////////////////
+        motors->L_fric.AUX.EN = 0;/////////////////////
         motors->R_fric.AUX.EN = 0;///////////////
         motors->dial.AUX.EN = true;//////////////////
         

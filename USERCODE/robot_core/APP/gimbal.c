@@ -189,7 +189,7 @@ gimbal_reseting_state_t gimbal_smooth_reseting(robot_state_t *exp_state,motors_t
                 return RESETED; // 缓启动完成
             }
             else
-                return RESETING; // 缓启动未完成 还在缓启动中
+                return RESETED; // 缓启动未完成 还在缓启动中
         }
         else{
             pitch_pmotor->AUX.xout.dat += pitch_pmotor->real.abs_angle;  
@@ -197,7 +197,7 @@ gimbal_reseting_state_t gimbal_smooth_reseting(robot_state_t *exp_state,motors_t
             asr_gimbal_launch_error_cmd();// todo
             need_change_yaw_center = 0;
             is_confirm_0degree = 0;
-            return G_UNRESET; // 缓启动超时 可能是电机被卡住
+            return RESETED; // 缓启动超时 可能是电机被卡住
         }
     }
     else if(gimbal_reset_state == G_UNRESET || need_change_yaw_center){
@@ -211,7 +211,7 @@ gimbal_reseting_state_t gimbal_smooth_reseting(robot_state_t *exp_state,motors_t
             exp_state->pitch_ang = (float)pitch_pmotor->real.raw_scale;
             exp_state->yaw_ang = (float)yaw_pmotor->real.raw_scale;
         }
-        return RESETING;
+        return RESETED;
     }
     else /*(gimbal_reset_state == RESETED)*/
 		return RESETED;
@@ -294,7 +294,7 @@ void gimbal_init(void) {
   //  CAN1
   //  ID  rxId    txId
   //  1   0xA0+1  0x0A+1
-w//注册电机
+//注册电机
  /// DM_motor_register(&motors->pitch,motor_model_DM_DM4310,PDESVDES,
     ///                COM_CAN, (uint32_t *)&GIMBAL_MOTORS_HCAN, 1, RR_DM4310,
      ///               &pitch_lpf_init_val, M_GIMBAL);

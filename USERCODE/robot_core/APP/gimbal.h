@@ -42,7 +42,7 @@ extern uint8_t is_confirm_0degree;
 // RAD值通过MOTOR除以编码值映射到弧度得到
 #define SOFT_START_DEADBAND_MOTOR 80
 #define SOFT_START_DEADBAND_RAD 0.061996f
-#define SOFT_START_MAX_CNT 2000
+#define SOFT_START_MAX_CNT 200000
 
 
 #define PATROL_YAW_SPEED 320

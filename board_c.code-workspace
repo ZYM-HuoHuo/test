@@ -64,6 +64,7 @@
 			"graphic_draw.h": "c",
 			"drv_ui.h": "c",
 			"motor_headers.h": "c"
-		}
+		},
+		"git.useEditorAsCommitInput": false
 	}
 }
