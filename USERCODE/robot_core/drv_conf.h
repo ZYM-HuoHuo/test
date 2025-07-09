@@ -181,7 +181,7 @@ extern "C"
 #define USE_REFEREE 0           ///< 是否使用裁判系统
 #define READY_FOR_BATTLE 0      ///< 为0不会触发阵亡检测
 #define USE_DT7_WHEEL 1         ///< 如果DT7遥控器拨轮坏了就置零不启用
-#define USE_TEST_FILE 0         ///< 测试功能启用文件test.c 
+#define USE_TEST_FILE 1        ///< 测试功能启用文件test.c 
 #define USE_GIMBAL_RESET 1      ///< 使能云台缓启动
 #define USE_CHASSIS_RESET 1     ///< 使能底盘缓启动
 #define USE_CENTER_FIRE 0	    ///< 使能中心火控

@@ -29,6 +29,18 @@
 extern CAN_HandleTypeDef hcan1;
 extern CAN_HandleTypeDef hcan2;
 
+/*pid结构体*/
+pid_struct_t fric_pid[2];
+pid_struct_t dial_rpm_pid; // 连发对速度PID
+pid_struct_t dial_ang_pid; // 单发对角度PID
+
+/*固定速度设置*/
+float set_fric_rpm = FRIC_TEST_RPM; // 摩擦轮设定(rpm)
+float set_dial_rpm = DIAL_RPM;      // 推弹速度设定(rpm)
+float exp_dial_rpm = 0;             // DT7拨轮给的期望
+
+
+
 const pid_struct_t test_motor_pid_init_value = {
     .kp = 0.0f,
 	.ki = 0.0f,     
@@ -48,12 +60,15 @@ float motor_output = 0;
 void motor_test_init(void){
     #if USE_TEST_FILE
     motors_t *motors = get_motors_ptr();
-    memcpy(&test_motor_pid, &test_motor_pid_init_value, sizeof(pid_struct_t));
-    //  CAN1
-    //  ID  rxId    txId
-    //  7   0x207   0x1FF
-    RM_QUAD_motor_init(&motors->test,motor_model_RM_QUAD_M3508,
-                  &hcan1,4,M_TIM_FREQ,&test_motor_lpf);
+  memcpy(&dial_rpm_pid, &dial_rpm_pid_init_val, sizeof(pid_struct_t));
+  memcpy(&dial_ang_pid, &dial_ang_pid_init_val, sizeof(pid_struct_t));
+
+    //  3   0x203   0x200
+  RM_QUAD_motor_register(&motors->dial, motor_model_RM_QUAD_M2006, QUAD_CURR,
+                         COM_CAN, (uint32_t *)&SHOOTER_MOTORS_HCAN, 3, RR_M2006,
+                         &dial_lpf_init_val, M_SHOOTER);
+
+
 		can_user_init(
       &TEST_MOTORS_HCAN,
       (uint32_t[]){rx_stdid_of(motors->test),
