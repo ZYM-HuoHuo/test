@@ -172,9 +172,10 @@ gimbal_reseting_state_t gimbal_smooth_reseting(robot_state_t *exp_state,motors_t
                     pitch_pmotor->AUX.xout.dat += pitch_pmotor->real.abs_angle;  
                     set_motor_zero_angle(pitch_pmotor,pitch_pmotor->real.raw_scale);
                     if(!pitch_pmotor->AUX.xout.read_flag){
-                        read_single_DM_motor_xout(pitch_pmotor,COM_CAN);
+                       // read_single_DM_motor_xout(pitch_pmotor,COM_CAN)
+						;
                         while(!pitch_pmotor->AUX.xout.read_flag){
-                            read_single_DM_motor_xout(pitch_pmotor,COM_CAN);
+                           // read_single_DM_motor_xout(pitch_pmotor,COM_CAN);
                             robot_delay_us(5000);
                         }
                     }
@@ -301,7 +302,7 @@ void gimbal_init(void) {
 
   //  2   0x206   0x1FF
   RM_QUAD_motor_register(&motors->yaw, motor_model_RM_QUAD_GM6020, QUAD_CURR,
-                         COM_CAN, (uint32_t *)&GIMBAL_MOTORS_HCAN, 2, RR_GM6020,
+                         COM_CAN, (uint32_t *)&GIMBAL_MOTORS_HCAN, 3, RR_GM6020,
                          &yaw_lpf_init_val, M_GIMBAL);
 
   // 云台电机 放在fifo1
