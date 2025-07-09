@@ -178,7 +178,7 @@ HAL_StatusTypeDef gimbal_motor_ctrl(
             LOAD_MOTOR_PDES(motors->yaw, ref_yaw_p);
             LOAD_MOTOR_VDES(motors->yaw, gimbal_vel_max);
         }
-        motors->pitch.AUX.EN = twrue;
+        motors->pitch.AUX.EN = 0;
         motors->yaw.AUX.EN = true;//////////////////////////////////////////////////////
 
         rslt |= set_all_motor_output(GIMBAL_MOTORS);
